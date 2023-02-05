@@ -1,0 +1,24 @@
+.AuthMenu {
+    background-color: #083352;
+    width: 400px;
+    height: auto;
+    color: #FFF;
+    text-align: left;
+    font-size: 16px;
+    padding: 5px;
+    margin: 0 auto 10px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.AuthMenu > span > *, .AuthMenu > span > div > * {
+    color: #FFF;
+    margin: 0px 5px 0px 5px;
+}
+
+.AuthMenu > span > span {
+    letter-spacing: 1px;
+}
+
+.AuthMenu > span > div {
+    float: right;
+}

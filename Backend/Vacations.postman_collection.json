@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "071442be-a8bf-4804-9805-87cdae71331e",
+		"name": "Vacations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25020526"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Moishe\",\r\n    \"lastName\": \"Ofnik\",\r\n    \"email\": \"moishe@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"osabag55@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all vacations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/vacations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"vacations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow Vacation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/follow/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"follow",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UnFollow Vacation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/unfollow/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"unfollow",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Add vacation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "destination",
+									"value": "Paris",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Paris description...",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-01",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-10",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "570",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/123/Desktop/Ofek/תמונות/רומא 6.11.22/CIFU3772.JPG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/admin/vacations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"vacations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update vacation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "destination",
+									"value": "Paris",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Paris description...",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-01",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-10",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "570",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/123/Desktop/eiffel-tower-in-paris-151-medium.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/admin/vacations/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"vacations",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete vacation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "destination",
+									"value": "Paris",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Paris description...",
+									"type": "text"
+								},
+								{
+									"key": "startDate",
+									"value": "2023-02-01",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-02-10",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "570",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/123/Desktop/Ofek/תמונות/רומא 6.11.22/CIFU3772.JPG"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/admin/vacations/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"vacations",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all vacations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/vacations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"vacations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/vacations-report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"vacations-report"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MSwiZmlyc3ROYW1lIjoiT2ZlayIsImxhc3ROYW1lIjoiU2FiYWciLCJlbWFpbCI6Im9zYWJhZzU1QGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE2NzUwMDUyMjcsImV4cCI6MTY3NTAxNjAyN30.mY9QSwEGzNnLGWtbo1WTeuN_P3tqynmP1UO1RALG3B8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

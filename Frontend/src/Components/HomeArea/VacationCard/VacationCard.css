@@ -1,0 +1,78 @@
+.VacationCard {
+	width: 400px;
+    height: 550px;
+    background: linear-gradient(#0f456c 42%, #eee 45%);
+    display: inline-block;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.VacationBG {
+    width: 100%;
+    height: 200px;
+    background-size: 100% 100%;
+}
+
+.VacationBG div:last-child {
+    position: absolute;
+    margin-top: 140px;
+    margin-left: 10px;
+    font-size: 25px;
+    color: #FFF;
+    text-shadow: -2px -2px 1px #000, 0px 0px 5px #000;
+    background-color: #00000096;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.Dates {
+    width: 95%;
+    height: 20px;
+    background-color: #0f456c;
+    color: #FFF;
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
+    top: -10px;
+    padding: 10px;
+    text-align: left;
+}
+
+.Dates span {
+    font-size: 14px;
+    float: right;
+}
+
+.Dates div {
+    height: 240px;
+    overflow: auto;
+    margin-top: 35px;
+    color: #000;
+}
+
+.Dates button {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    background-color: #0f456c;
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.SmallButton {
+    background-color: #ffffffe6;
+    border: none;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 10px 0px 10px 10px;
+    color: #737373;
+    cursor: pointer;
+    float: left;
+}
+
+.SmallButton span {
+    margin-right: 7px;
+}

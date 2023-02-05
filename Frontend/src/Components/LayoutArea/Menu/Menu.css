@@ -1,0 +1,28 @@
+.Menu {
+    width: 85%;
+    background-color: rgb(15, 69, 108);
+    border-bottom: 10px solid rgb(8, 51, 82);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto 0;
+}
+
+.Menu a {
+    color: #083352;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: 0.5s;
+    background: linear-gradient(#ffffff, #ffffff);
+    padding: 5px 20px 5px 20px;
+    border-radius: 20px;
+    border: 3px solid #ffffff;
+}
+
+.Menu a:Hover {
+    background: linear-gradient(#96b8db, #ffffff);
+}
