@@ -20,7 +20,7 @@ function Register(): JSX.Element {
             navigate("/home");
         }
         catch(err: any) {
-            alert(err.message);
+            notify.error(err);
         }
     }
 

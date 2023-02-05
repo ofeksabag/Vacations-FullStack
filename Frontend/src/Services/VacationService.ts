@@ -8,14 +8,14 @@ class VacationService {
 
     public async getAllVacations(): Promise<VacationModel[]> {
         
-        let vacations = vacationsStore.getState().userVacations;
+        let vacations = vacationsStore.getState().vacations;
 
         if(vacations.length === 0) {
 
             const response = await axios.get<VacationModel[]>(appConfig.userVacationsUrl);
             vacations = response.data;
 
-            vacationsStore.dispatch({ type: VacationsActionType.FetchUserVacations, payload: vacations });
+            vacationsStore.dispatch({ type: VacationsActionType.FetchVacations, payload: vacations });
 
         }
 

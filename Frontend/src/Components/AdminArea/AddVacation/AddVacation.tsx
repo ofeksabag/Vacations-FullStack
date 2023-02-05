@@ -14,6 +14,12 @@ function AddVacation(): JSX.Element {
 
     async function send(vacation: VacationModel) {
         try {
+
+            if(new Date(vacation.startDate).getTime() > new Date(vacation.endDate).getTime()) {
+                notify.error("You cannot select a date that precedes start date");
+                return;
+            }
+
             vacation.image = (vacation.image as unknown as FileList)[0];
             await adminService.addVacation(vacation);
             notify.success("Vacation added successfully");

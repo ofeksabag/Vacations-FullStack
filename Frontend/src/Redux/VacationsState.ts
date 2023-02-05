@@ -1,16 +1,12 @@
 import { createStore } from "redux";
-import FollowersModel from "../Models/FollowersModel";
 import VacationModel from "../Models/VacationModel";
 
 export class VacationsState {
-    public userVacations: VacationModel[] = [];
-    public adminVacations: VacationModel[] = [];
-    public followers: FollowersModel[] = [];
+    public vacations: VacationModel[] = [];
 }
 
 export enum VacationsActionType {
-    FetchUserVacations = "FetchUserVacations",
-    FetchAdminVacations = "FetchAdminVacations",
+    FetchVacations = "FetchVacations",
     AddVacation = "AddVacations",
     UpdateVacation = "UpdateVacation",
     DeleteVacation = "DeleteVacation",
@@ -26,38 +22,38 @@ export interface VacationsAction {
 export function vacationsReducer(currentState = new VacationsState(), action: VacationsAction): VacationsState {
     const newState = {...currentState};
     let indexToDelete;
+    let indexToChange;
 
     switch(action.type) {
 
-        case VacationsActionType.FetchUserVacations:
-            newState.userVacations = action.payload;
-            break;
-
-        case VacationsActionType.FetchAdminVacations:
-            newState.adminVacations = action.payload;
+        case VacationsActionType.FetchVacations:
+            newState.vacations = action.payload;
             break;
 
         case VacationsActionType.AddVacation:
-            newState.adminVacations.push(action.payload);
+            newState.vacations.push(action.payload);
             break;
 
         case VacationsActionType.UpdateVacation:
-            const indexToUpdate = newState.adminVacations.findIndex(v => v.vacationId === action.payload.vacationId);
-            if(indexToUpdate >= 0) newState.adminVacations[indexToUpdate] = action.payload;
+            const indexToUpdate = newState.vacations.findIndex(v => v.vacationId === action.payload.vacationId);
+            if(indexToUpdate >= 0) newState.vacations[indexToUpdate] = action.payload;
             break;
 
         case VacationsActionType.DeleteVacation:
-            indexToDelete = newState.adminVacations.findIndex(v => v.vacationId === action.payload);
-            if(indexToDelete >= 0) newState.adminVacations.splice(indexToDelete, 1);
+            indexToDelete = newState.vacations.findIndex(v => v.vacationId === action.payload);
+            if(indexToDelete >= 0) newState.vacations.splice(indexToDelete, 1);
             break;
 
         case VacationsActionType.Follow:
-            newState.followers.push(action.payload);
+            indexToChange = newState.vacations.findIndex(v => v.vacationId === action.payload);
+            newState.vacations[indexToChange].followersCount++;
+            newState.vacations[indexToChange].isFollowing = 1;
             break;
 
         case VacationsActionType.Unfollow:
-            indexToDelete = newState.followers.findIndex(f => f.userId === action.payload);
-            if(indexToDelete >= 0) newState.followers.splice(indexToDelete, 1);
+            indexToChange = newState.vacations.findIndex(v => v.vacationId === action.payload);
+            newState.vacations[indexToChange].followersCount--;
+            newState.vacations[indexToChange].isFollowing = 0;
             break;
 
         }

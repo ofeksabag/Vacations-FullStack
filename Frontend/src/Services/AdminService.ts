@@ -9,13 +9,14 @@ class AdminService {
 
     public async getAllVacationsForAdmin(): Promise<VacationModel[]> {
 
-        let vacations = vacationsStore.getState().adminVacations;
+        let vacations = vacationsStore.getState().vacations;
 
         if(vacations.length === 0) {
             const response = await axios.get<VacationModel[]>(appConfig.adminVacationsUrl);
+            
             vacations = response.data;
 
-            vacationsStore.dispatch({ type: VacationsActionType.FetchAdminVacations, payload: vacations });
+            vacationsStore.dispatch({ type: VacationsActionType.FetchVacations, payload: vacations });
         }
 
         return vacations;
@@ -24,9 +25,17 @@ class AdminService {
 
     public async getOneVacation(vacationId: number): Promise<VacationModel> {
 
-        const response = await axios.get<VacationModel>(appConfig.adminVacationsUrl + vacationId);
-        
-        const vacation = response.data;
+        let vacations = vacationsStore.getState().vacations;
+
+        let vacation = vacations.find(v => v.vacationId === vacationId);
+
+        if(!vacation) {
+
+            const response = await axios.get<VacationModel>(appConfig.adminVacationsUrl + vacationId);
+    
+            vacation = response.data;
+
+        }
 
         return vacation;
         
@@ -65,7 +74,7 @@ class AdminService {
     }
 
     public async getVacationsReport(): Promise<ReportModel[]> {
-
+        
         const response = await axios.get<ReportModel[]>(appConfig.adminReportUrl);
         
         const report = response.data;

@@ -18,6 +18,7 @@ interface VacationCardProps {
 function VacationCard(props: VacationCardProps): JSX.Element {
 
     const [user, setUser] = useState<UserModel>();
+    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
 
@@ -27,6 +28,10 @@ function VacationCard(props: VacationCardProps): JSX.Element {
             setUser(authStore.getState().user);
         });
 
+    }, []);
+
+    useEffect(() => {
+        props.vacation.isFollowing === 1 && setIsActive(true);
     }, []);
 
     function formatTime(time: string): string {
@@ -40,7 +45,15 @@ function VacationCard(props: VacationCardProps): JSX.Element {
         return totalDays;
     }
 
-    async function checkMyFollow() {
+    const handleClick = () => {
+
+        props.vacation.isFollowing === 0 ? setIsActive(true) : setIsActive(false);
+        
+        updateFollow();
+
+    };
+
+    async function updateFollow() {
         try {
             await props.checkFollow(props.vacation.vacationId, props.vacation.isFollowing);
         }
@@ -93,7 +106,10 @@ function VacationCard(props: VacationCardProps): JSX.Element {
 
                 {user && user.role === "User" && <>
 
-                    <button className="SmallButton" onClick={checkMyFollow}>
+                    <button className="SmallButton" style={{
+                        backgroundColor: isActive ? 'salmon' : '',
+                        color: isActive ? 'white' : '',
+                    }} onClick={handleClick}>
 
                         <span>
                             <FontAwesomeIcon icon={faHeart} />

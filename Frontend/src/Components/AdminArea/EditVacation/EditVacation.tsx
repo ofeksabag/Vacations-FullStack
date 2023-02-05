@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import VacationModel from "../../../Models/VacationModel";
@@ -17,13 +17,15 @@ function EditVacation(): JSX.Element {
     const params = useParams();
 
     useEffect(() => {
+
         adminService.getOneVacation(+params.vacationId)
             .then(v => {
+                    console.log(v);
                     setValue("vacationId", v.vacationId);
                     setValue("destination", v.destination);
                     setValue("description", v.description);
-                    setValue("startDate", new Date(v.startDate).toISOString().slice(0, -14));
-                    setValue("endDate", new Date(v.endDate).toISOString().slice(0, -14));
+                    setValue("startDate", new Date(Date.UTC(new Date(v.startDate).getFullYear(), new Date(v.startDate).getMonth(), new Date(v.startDate).getDate())).toISOString().slice(0, 10));
+                    setValue("endDate", new Date(Date.UTC(new Date(v.endDate).getFullYear(), new Date(v.endDate).getMonth(), new Date(v.endDate).getDate())).toISOString().slice(0, 10));
                     setValue("price", v.price);
                     setImage(appConfig.userVacationsImagesUrl + v.imageFile);
             })
@@ -32,10 +34,17 @@ function EditVacation(): JSX.Element {
 
     async function send(vacation: VacationModel) {
         try {
+
+            if(new Date(vacation.startDate).getTime() > new Date(vacation.endDate).getTime()) {
+                notify.error("You cannot select a date that precedes start date");
+                return;
+            }
+
             vacation.image = (vacation.image as unknown as FileList)[0];
             await adminService.updateVacation(vacation);
             notify.success("Vacation has been updated");
             navigate("/home");
+
         }
         catch(err: any) {
             notify.error(err);

@@ -1,5 +1,4 @@
 import express, { Request, Response, NextFunction } from "express";
-import cyber from "../2-utils/cyber";
 import CredentialsModel from "../4-models/credentials-model";
 import UserModel from "../4-models/user-model";
 import authService from "../5-services/auth-service";
