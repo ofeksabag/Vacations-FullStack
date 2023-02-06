@@ -7,7 +7,6 @@ import appConfig from "../../../Utils/AppConfig";
 import notify from "../../../Utils/Notify";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import "./EditVacation.css";
 
 function EditVacation(): JSX.Element {
 

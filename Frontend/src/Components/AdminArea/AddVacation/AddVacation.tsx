@@ -5,7 +5,6 @@ import adminService from "../../../Services/AdminService";
 import notify from "../../../Utils/Notify";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import "./AddVacation.css";
 
 function AddVacation(): JSX.Element {
 

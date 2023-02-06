@@ -5,7 +5,6 @@ import authService from "../../../Services/AuthService";
 import notify from "../../../Utils/Notify";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import "./Register.css";
 
 function Register(): JSX.Element {
 

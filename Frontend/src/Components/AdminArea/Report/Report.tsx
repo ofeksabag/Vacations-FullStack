@@ -4,7 +4,6 @@ import ReportModel from '../../../Models/ReportModel';
 import adminService from '../../../Services/AdminService';
 import { CSVLink, CSVDownload } from "react-csv";
 import notify from '../../../Utils/Notify';
-import "./Report.css";
 
 const Report = () => {
 

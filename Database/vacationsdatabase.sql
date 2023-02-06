@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2023 at 09:36 PM
+-- Generation Time: Feb 06, 2023 at 12:21 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -40,12 +40,15 @@ CREATE TABLE `followers` (
 
 INSERT INTO `followers` (`userId`, `vacationId`) VALUES
 (2, 7),
+(2, 9),
 (2, 10),
 (2, 12),
 (2, 13),
 (2, 14),
 (4, 6),
 (4, 7),
+(4, 12),
+(4, 13),
 (4, 18);
 
 -- --------------------------------------------------------

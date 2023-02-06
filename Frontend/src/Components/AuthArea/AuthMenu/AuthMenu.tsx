@@ -25,6 +25,7 @@ function AuthMenu(): JSX.Element {
     function logout(): void {
         authService.logout();
         navigate("/login");
+        window.location.reload();
     }
 
     return (
