@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import UserModel from "../../../Models/UserModel";
 import VacationModel from "../../../Models/VacationModel";
+import { authStore } from "../../../Redux/AuthState";
+import { vacationsStore } from "../../../Redux/VacationsState";
 import adminService from "../../../Services/AdminService";
 import vacationService from "../../../Services/VacationService";
 import notify from "../../../Utils/Notify";
@@ -7,13 +10,33 @@ import VacationCard from "../VacationCard/VacationCard";
 
 function Home(): JSX.Element {
 
+    const [user, setUser] = useState<UserModel>();
     const [ vacations, setVacations ] = useState<VacationModel[]>([]);
 
     useEffect(() => {
+        setUser(authStore.getState().user);
+        const unsubscribe = authStore.subscribe(() => {
+          setUser(authStore.getState().user);
+        });
+        return () => {
+          unsubscribe();
+        };
+      }, [user, vacations]);
+
+      useEffect(() => {
         vacationService.getAllVacations()
             .then(vacationsDB => setVacations(vacationsDB))
             .catch(err => notify.error(err.message));
-    }, []);
+
+            const sub = vacationsStore.subscribe(() => {
+                setVacations(vacationsStore.getState().vacations);
+              });
+
+              return () => {
+                sub();
+              };
+
+    }, [vacations]);
 
     async function checkFollow(vacationId: number, isFollowing: number) {
         try {

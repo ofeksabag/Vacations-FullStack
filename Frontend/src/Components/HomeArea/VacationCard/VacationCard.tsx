@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarDays, faHeart, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import "./VacationCard.css";
 import { useEffect, useState } from "react";
-import UserModel from "../../../Models/UserModel";
-import { authStore } from "../../../Redux/AuthState";
 import notify from "../../../Utils/Notify";
 import { NavLink } from "react-router-dom";
+import UserModel from "../../../Models/UserModel";
+import { authStore } from "../../../Redux/AuthState";
 
 interface VacationCardProps {
     vacation: VacationModel;
@@ -21,18 +21,15 @@ function VacationCard(props: VacationCardProps): JSX.Element {
     const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
-
-        setUser(authStore.getState().user);
-
-        authStore.subscribe(() => {
-            setUser(authStore.getState().user);
-        });
-
+        props.vacation.isFollowing === 1 && setIsActive(true);
     }, []);
 
     useEffect(() => {
-        props.vacation.isFollowing === 1 && setIsActive(true);
-    }, []);
+        setUser(authStore.getState().user);
+        authStore.subscribe(() => {
+            setUser(authStore.getState().user);
+        });
+    }, [user]);
 
     function formatTime(time: string): string {
         const d = new Date(time);
