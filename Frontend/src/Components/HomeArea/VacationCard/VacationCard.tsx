@@ -45,7 +45,7 @@ function VacationCard(props: VacationCardProps): JSX.Element {
     const handleClick = () => {
 
         props.vacation.isFollowing === 0 ? setIsActive(true) : setIsActive(false);
-        
+
         updateFollow();
 
     };

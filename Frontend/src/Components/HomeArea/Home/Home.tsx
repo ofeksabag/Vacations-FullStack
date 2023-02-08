@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import UserModel from "../../../Models/UserModel";
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
-import { vacationsStore } from "../../../Redux/VacationsState";
 import adminService from "../../../Services/AdminService";
 import vacationService from "../../../Services/VacationService";
 import notify from "../../../Utils/Notify";
@@ -11,53 +10,45 @@ import VacationCard from "../VacationCard/VacationCard";
 function Home(): JSX.Element {
 
     const [user, setUser] = useState<UserModel>();
-    const [ vacations, setVacations ] = useState<VacationModel[]>([]);
+    const [vacations, setVacations] = useState<VacationModel[]>([]);
 
     useEffect(() => {
         setUser(authStore.getState().user);
+
         const unsubscribe = authStore.subscribe(() => {
-          setUser(authStore.getState().user);
+            setUser(authStore.getState().user);
         });
         return () => {
-          unsubscribe();
+            unsubscribe();
         };
-      }, [user, vacations]);
+    }, [user, vacations]);
 
-      useEffect(() => {
+    useEffect(() => {
         vacationService.getAllVacations()
             .then(vacationsDB => setVacations(vacationsDB))
             .catch(err => notify.error(err.message));
-
-            const sub = vacationsStore.subscribe(() => {
-                setVacations(vacationsStore.getState().vacations);
-              });
-
-              return () => {
-                sub();
-              };
-
-    }, [vacations]);
+    }, []);
 
     async function checkFollow(vacationId: number, isFollowing: number) {
         try {
-            if(isFollowing === 0) {
+            if (isFollowing === 0) {
                 await vacationService.follow(vacationId);
 
                 const duplicateVacations = [...vacations];
                 const index = duplicateVacations.findIndex(v => v.isFollowing === isFollowing && v.vacationId === vacationId);
-                if(index !== -1) duplicateVacations[index].isFollowing = 1;
+                if (index !== -1) duplicateVacations[index].isFollowing = 1;
                 setVacations(duplicateVacations);
             }
             else {
                 await vacationService.unfollow(vacationId);
-                
+
                 const duplicateVacations = [...vacations];
                 const index = duplicateVacations.findIndex(v => v.isFollowing === isFollowing && v.vacationId === vacationId);
-                if(index !== -1) duplicateVacations[index].isFollowing = 0;
+                if (index !== -1) duplicateVacations[index].isFollowing = 0;
                 setVacations(duplicateVacations);
             }
         }
-        catch(err: any) {
+        catch (err: any) {
             notify.error(err.message);
         }
     }
@@ -71,15 +62,66 @@ function Home(): JSX.Element {
             duplicateVacations.splice(index, 1);
             setVacations(duplicateVacations);
         }
-        catch(err: any) {
+        catch (err: any) {
             notify.error(err.message);
         }
+    }
+
+    async function filterVacations(args: ChangeEvent<HTMLSelectElement>) {
+
+        const selectValue = args.target.value;
+        
+        let newVacations: VacationModel[];
+
+        await vacationService.getAllVacations()
+            .then(v => {
+                newVacations = v;
+            })
+            .catch(err => notify.error(err.message));
+
+        let filteredVacations;
+
+        const date = new Date();
+
+        switch(selectValue) {
+            case "filterByFollowing":
+                filteredVacations = newVacations.filter(v => v.isFollowing === 1);
+                break;
+
+            case "filterNotStartedYet":
+                filteredVacations = newVacations.filter(v => new Date(v.startDate).getTime() > date.getTime());
+                break;
+
+            case "filterCurrentlyActive":
+                filteredVacations = newVacations.filter(v => new Date(v.startDate).getTime() < date.getTime() && new Date(v.endDate).getTime() > date.getTime());
+                break;
+
+            default:
+                filteredVacations = vacations;
+                break;
+        }
+
+        setVacations(filteredVacations);
+
     }
 
     return (
         <div className="Home">
 
-            { vacations.map(v => <VacationCard key={v.vacationId} vacation={v} checkFollow={checkFollow} deleteVacation={deleteVacation} />) }
+            <div>
+                
+                <span>Filter by</span>
+
+                <select defaultValue="" onChange={filterVacations}>
+                    <option disabled value="">Select Filter...</option>
+                    <option value="filterByFollowing">Following</option>
+                    <option value="filterNotStartedYet">Not started yet</option>
+                    <option value="filterCurrentlyActive">Currently active</option>
+                </select>
+
+            </div>
+
+            {vacations.map(v => <VacationCard key={v.vacationId} vacation={v} checkFollow={checkFollow} deleteVacation={deleteVacation} />)}
 
         </div>
     );

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2023 at 12:21 PM
+-- Generation Time: Feb 08, 2023 at 11:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,17 +39,21 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`userId`, `vacationId`) VALUES
+(2, 6),
 (2, 7),
+(2, 8),
 (2, 9),
-(2, 10),
 (2, 12),
 (2, 13),
-(2, 14),
-(4, 6),
+(2, 19),
 (4, 7),
-(4, 12),
+(4, 8),
+(4, 9),
+(4, 10),
 (4, 13),
-(4, 18);
+(4, 14),
+(4, 15),
+(4, 19);
 
 -- --------------------------------------------------------
 
@@ -98,9 +102,9 @@ CREATE TABLE `vacations` (
 INSERT INTO `vacations` (`vacationId`, `destination`, `description`, `startDate`, `endDate`, `price`, `imageFile`) VALUES
 (6, 'Paris', 'Paris, the city of light, is known for its stunning architecture, world-renowned museums, rich cultural heritage and beautiful gardens. Whether you are an art lover, a foodie, or just looking to explore a new city, Paris has something to offer everyone. The Eiffel Tower is one of the most iconic landmarks in the world and is a must-visit when in Paris. Another famous attraction is the Louvre Museum, which houses thousands of works of art including the Mona Lisa. The Notre-Dame Cathedral, Sainte-Chapelle, and Basilica of the Sacré-Cœur are other notable examples of the city\'s stunning architecture. Paris is also famous for its haute cuisine and patisseries, where you can indulge in delicious croissants, macarons, and other sweet treats. The Seine River offers a romantic boat tour, and the city\'s parks and gardens, including the Luxembourg Garden and the Tuileries, are perfect for a leisurely stroll or a picnic.', '2023-03-09', '2023-03-22', '570.00', 'e93f6c2e-3132-4008-a4d8-26ae253b29e9.jpg'),
 (7, 'Rome', 'Rome, the capital city of Italy, is a must-visit destination for travelers. With its rich history, stunning architecture, and delicious cuisine, Rome offers a unique blend of cultural and artistic experiences that are sure to leave a lasting impression.\r\n\r\nThe city is home to numerous historical landmarks, including the Colosseum, one of the most iconic symbols of ancient Rome, the Pantheon, a well-preserved temple dedicated to all the gods of ancient Rome, and the Roman Forum, a vast archaeological site that was once the center of political and social life in ancient Rome. Visitors can also explore the Vatican City, the smallest country in the world and home to the Vatican Museums and St. Peter\'s Basilica.', '2023-02-20', '2023-02-24', '200.00', '73adfb90-f104-48b8-9cf1-fd4870dbbf0e.jpg'),
-(8, 'New York', 'New York City, also known as the city that never sleeps, is a must-visit destination for travelers. With its bustling energy, iconic landmarks, and diverse cultures, New York offers a unique blend of excitement, history, and adventure.\r\n\r\nOne of the most recognizable landmarks in New York is the Statue of Liberty, a symbol of freedom and democracy, located on Liberty Island. The Empire State Building, another famous landmark, offers breathtaking views of the city from its observation deck. Times Square, with its bright lights, billboards, and bustling energy, is a vibrant hub of activity that is a must-see for any first-time visitor to the city.', '2023-03-08', '2023-03-22', '2380.00', 'fed4a1f4-08dc-4871-bd4a-9e6e8931f5f1.jpg'),
+(8, 'New York', 'New York City, also known as the city that never sleeps, is a must-visit destination for travelers. With its bustling energy, iconic landmarks, and diverse cultures, New York offers a unique blend of excitement, history, and adventure.\r\n\r\nOne of the most recognizable landmarks in New York is the Statue of Liberty, a symbol of freedom and democracy, located on Liberty Island. The Empire State Building, another famous landmark, offers breathtaking views of the city from its observation deck. Times Square, with its bright lights, billboards, and bustling energy, is a vibrant hub of activity that is a must-see for any first-time visitor to the city.', '2023-02-06', '2023-02-22', '2380.00', 'fed4a1f4-08dc-4871-bd4a-9e6e8931f5f1.jpg'),
 (9, 'Budapest', 'Budapest, the capital city of Hungary, is a must-visit destination for travelers. With its stunning architecture, rich history, and beautiful scenery, Budapest offers a unique blend of culture and natural beauty that is sure to leave a lasting impression.\r\n\r\nOne of the most recognizable landmarks in Budapest is the Hungarian Parliament Building, a stunning example of neo-Gothic architecture located on the banks of the Danube River. The Buda Castle, located on the hill overlooking the city, offers breathtaking views of the city and houses several museums and galleries. The thermal baths, including the famous Gellért Baths and Széchenyi Baths, are a must-visit for anyone looking to experience the city\'s famous thermal waters.', '2023-03-12', '2023-03-17', '340.00', '94f58e06-cda1-489d-aa6f-0431622cc011.jpg'),
-(10, 'Germany', 'Germany is a must-visit destination for travelers, offering a rich cultural heritage, stunning scenery, and diverse attractions. From its historic cities and medieval castles to its beautiful landscapes and modern architecture, Germany has something to offer for everyone.\r\n\r\nBerlin, the capital city, is a hub of cultural and historical significance, with landmarks such as the Brandenburg Gate, Reichstag building, and Checkpoint Charlie Museum. The city is also renowned for its vibrant street art and thriving music and nightlife scenes.', '2023-02-14', '2023-02-19', '490.00', '71d743ab-ce59-4042-92f0-c9f9c805443d.jpg'),
+(10, 'Germany', 'Germany is a must-visit destination for travelers, offering a rich cultural heritage, stunning scenery, and diverse attractions. From its historic cities and medieval castles to its beautiful landscapes and modern architecture, Germany has something to offer for everyone.\r\n\r\nBerlin, the capital city, is a hub of cultural and historical significance, with landmarks such as the Brandenburg Gate, Reichstag building, and Checkpoint Charlie Museum. The city is also renowned for its vibrant street art and thriving music and nightlife scenes.', '2023-02-02', '2023-02-05', '490.00', '71d743ab-ce59-4042-92f0-c9f9c805443d.jpg'),
 (11, 'Madrid', 'Madrid, the capital city of Spain, is a must-visit destination for travelers. With its rich cultural heritage, stunning architecture, and vibrant atmosphere, Madrid offers a unique blend of history and modernity that is sure to leave a lasting impression.\r\n\r\nOne of the most recognizable landmarks in Madrid is the Royal Palace of Madrid, a stunning example of Baroque architecture that serves as the official residence of the Spanish royal family. The Prado Museum, one of the largest art museums in the world, houses an impressive collection of works by Spanish masters such as Velázquez and Goya.', '2023-03-08', '2023-03-16', '700.00', '98352af2-6cb1-4d0f-9a62-88a8db54d5d0.jpeg'),
 (12, 'London', 'London, the capital city of England, is a must-visit destination for travelers. With its rich history, stunning architecture, and vibrant cultural scene, London offers a unique blend of tradition and modernity that is sure to leave a lasting impression.\r\n\r\nOne of the most recognizable landmarks in London is Buckingham Palace, the official residence of the British monarch. Other historic landmarks in the city include the Tower of London, Westminster Abbey, and St. Paul\'s Cathedral.\r\n\r\nLondon is also renowned for its thriving cultural scene, with numerous museums, galleries, and theaters offering a wealth of entertainment and education opportunities. The city is also famous for its shopping, with Oxford Street, Regent Street, and Camden Market being just a few of the many shopping destinations that the city has to offer.', '2023-03-14', '2023-03-22', '800.00', '563ed467-8f3b-4bbe-9914-c974dc8af5bc.jpg'),
 (13, 'Tokio', 'Tokyo, the capital city of Japan, is a must-visit destination for travelers. With its unique blend of modernity and tradition, cutting-edge technology, and rich cultural heritage, Tokyo offers an unforgettable experience for visitors of all ages.\r\n\r\nOne of the most recognizable landmarks in Tokyo is the Tokyo Tower, a 333-meter tall structure that offers stunning views of the city. Another must-visit destination is the Imperial Palace, the official residence of the Japanese imperial family, surrounded by beautiful gardens.\r\n\r\nTokyo is also renowned for its cutting-edge technology, with numerous electronics shops and gadget-filled arcades that offer a glimpse into the city\'s innovation-driven culture. In addition, Tokyo is home to some of the world\'s best shopping, with numerous department stores, boutiques, and street markets offering a wide range of products and unique shopping experiences.', '2023-04-05', '2023-05-05', '1300.00', '27816285-0134-4770-9959-03f901678748.jpeg'),
