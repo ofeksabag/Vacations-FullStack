@@ -37,7 +37,7 @@ class VacationModel {
     public static priceValidation: RegisterOptions = {
         required: { value: true, message: "Missing price" },
         min: { value: 0, message: "Price must be minimum 0" },
-        max: { value: 99999, message: "Price must be maximum 99,999" }
+        max: { value: 10000, message: "Price must be maximum 10,000" }
     }
 
     public static imageValidation: RegisterOptions = {

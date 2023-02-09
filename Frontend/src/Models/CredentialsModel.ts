@@ -7,7 +7,7 @@ class CredentialsModel {
 
     public static emailValidation: RegisterOptions = {
         required: { value: true, message: "Missing email" },
-        minLength: { value: 11, message: "Email must be minimum 11 chars" },
+        minLength: { value: 10, message: "Email must be minimum 10 chars" },
         maxLength: { value: 40, message: "Email must be maximum 40 chars" }
     }
 

@@ -36,7 +36,7 @@ class VacationModel {
         description: Joi.string().required().min(10).max(1000),
         startDate: Joi.string().required(),
         endDate: Joi.string().required(),
-        price: Joi.number().required().min(0).max(99999),
+        price: Joi.number().required().min(0).max(10000),
         image: Joi.object().optional(),
         imageFile: Joi.string().optional().min(38).max(50),
         isFollowing: Joi.number().optional(),

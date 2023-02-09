@@ -81,7 +81,7 @@ function Home(): JSX.Element {
     async function filterVacations(args: ChangeEvent<HTMLSelectElement>) {
 
         const selectValue = args.target.value;
-        
+
         let newVacations: VacationModel[];
 
         await vacationService.getAllVacations()
@@ -94,7 +94,11 @@ function Home(): JSX.Element {
 
         const date = new Date();
 
-        switch(selectValue) {
+        switch (selectValue) {
+            case "":
+                filteredVacations = newVacations;
+                break;
+
             case "filterByFollowing":
                 filteredVacations = newVacations.filter(v => v.isFollowing === 1);
                 break;
@@ -107,8 +111,12 @@ function Home(): JSX.Element {
                 filteredVacations = newVacations.filter(v => new Date(v.startDate).getTime() < date.getTime() && new Date(v.endDate).getTime() > date.getTime());
                 break;
 
-            default:
-                filteredVacations = vacations;
+            case "filterFollowingAndNotStarted":
+                filteredVacations = newVacations.filter(v => v.isFollowing === 1 && new Date(v.startDate).getTime() > date.getTime());
+                break;
+
+            case "filterFollowingAndActive":
+                filteredVacations = newVacations.filter(v => v.isFollowing === 1 && new Date(v.startDate).getTime() < date.getTime() && new Date(v.endDate).getTime() > date.getTime());
                 break;
         }
 
@@ -120,14 +128,20 @@ function Home(): JSX.Element {
         <div className="Home">
 
             <div>
-                
+
                 <span>Filter by</span>
 
                 <select defaultValue="" onChange={filterVacations}>
-                    <option disabled value="">Select Filter...</option>
+                    <option disabled>---------------------------------</option>
+                    <option value="">None</option>
+                    <option disabled>---------------------------------</option>
                     <option value="filterByFollowing">Following</option>
                     <option value="filterNotStartedYet">Not started yet</option>
                     <option value="filterCurrentlyActive">Currently active</option>
+                    <option disabled>---------------------------------</option>
+                    <option value="filterFollowingAndNotStarted">Following & Not Started yet</option>
+                    <option value="filterFollowingAndActive">Following & Currently active</option>
+                    <option disabled>---------------------------------</option>
                 </select>
 
             </div>
