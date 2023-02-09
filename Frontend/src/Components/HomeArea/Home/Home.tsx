@@ -5,12 +5,23 @@ import { authStore } from "../../../Redux/AuthState";
 import adminService from "../../../Services/AdminService";
 import vacationService from "../../../Services/VacationService";
 import notify from "../../../Utils/Notify";
+import Pagination from "../Pagination/Pagination";
 import VacationCard from "../VacationCard/VacationCard";
 
 function Home(): JSX.Element {
 
     const [user, setUser] = useState<UserModel>();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const postPerPage = 8;
+    const indexOfLastVacation = currentPage * postPerPage;
+    const indexOfFirstVacation = indexOfLastVacation - postPerPage;
+    const currentVacations = vacations.slice(indexOfFirstVacation, indexOfLastVacation);
+
+    function paginate(pageNumber: number) {
+        setCurrentPage(pageNumber);
+    }
 
     useEffect(() => {
         setUser(authStore.getState().user);
@@ -121,7 +132,9 @@ function Home(): JSX.Element {
 
             </div>
 
-            {vacations.map(v => <VacationCard key={v.vacationId} vacation={v} checkFollow={checkFollow} deleteVacation={deleteVacation} />)}
+            {currentVacations.map(v => <VacationCard key={v.vacationId} vacation={v} checkFollow={checkFollow} deleteVacation={deleteVacation} />)}
+
+            <Pagination vacationsPerPage={postPerPage} totalVacations={vacations.length} paginatePages={paginate}></Pagination>
 
         </div>
     );

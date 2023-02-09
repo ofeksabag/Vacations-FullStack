@@ -1,0 +1,22 @@
+.Pagination {
+    margin: 20px auto;
+}
+
+.PaginationButton {
+    margin: 5px;
+    padding: 5px 10px 5px 10px;
+    background-color: #0f456c;
+    text-decoration: none;
+    font-size: x-large;
+    border-radius: 3px;
+    color: #fff;
+    border: 3px solid #062d49;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.PaginationButton:Hover {
+    background-color: #1667a1;
+    border: 3px solid #0f5486;
+    transition: 0.5s;
+}
