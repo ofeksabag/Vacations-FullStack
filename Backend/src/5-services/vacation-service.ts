@@ -1,4 +1,3 @@
-import { OkPacket } from "mysql";
 import dal from "../2-utils/dal";
 import UserModel from "../4-models/user-model";
 import VacationModel from "../4-models/vacation-model";

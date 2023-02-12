@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UserModel from "../../../Models/UserModel";
 import VacationModel from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
@@ -13,6 +14,8 @@ function Home(): JSX.Element {
     const [user, setUser] = useState<UserModel>();
     const [vacations, setVacations] = useState<VacationModel[]>([]);
 
+    const navigate = useNavigate();
+
     const [currentPage, setCurrentPage] = useState(1);
     const postPerPage = 8;
     const indexOfLastVacation = currentPage * postPerPage;
@@ -26,6 +29,8 @@ function Home(): JSX.Element {
     useEffect(() => {
         setUser(authStore.getState().user);
 
+        if(!user && !authStore.getState().token) navigate("/login");
+
         const unsubscribe = authStore.subscribe(() => {
             setUser(authStore.getState().user);
         });
@@ -37,8 +42,12 @@ function Home(): JSX.Element {
     useEffect(() => {
         vacationService.getAllVacations()
             .then(vacationsDB => setVacations(vacationsDB))
-            .catch(err => notify.error(err.message));
-    }, []);
+            .catch(err => {
+                if(user && authStore.getState().token) {
+                    notify.error(err.message)
+                }
+            });
+    }, [user]);
 
     async function checkFollow(vacationId: number, isFollowing: number) {
         try {
