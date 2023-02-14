@@ -1,0 +1,4 @@
+.gitattributes
+README.md
+docker-compose.yml
+docker-compose.prod.yml

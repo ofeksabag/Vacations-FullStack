@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"osabag55@gmail.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"bart@simpson.com\",\r\n    \"password\": \"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,12 +54,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/auth/login",
+							"raw": "http://localhost:4001/api/auth/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "4001",
 							"path": [
 								"api",
 								"auth",
@@ -80,12 +80,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/vacations",
+							"raw": "http://localhost:4001/api/users/vacations",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "4001",
 							"path": [
 								"api",
 								"users",
@@ -101,7 +101,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/follow/1",
+							"raw": "http://localhost:4000/api/users/follow/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -111,7 +111,7 @@
 								"api",
 								"users",
 								"follow",
-								"1"
+								"10"
 							]
 						}
 					},
@@ -123,7 +123,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:4000/api/users/unfollow/1",
+							"raw": "http://localhost:4000/api/users/unfollow/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -133,7 +133,7 @@
 								"api",
 								"users",
 								"unfollow",
-								"1"
+								"10"
 							]
 						}
 					},
@@ -315,27 +315,6 @@
 					"response": []
 				},
 				{
-					"name": "Get all vacations",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/api/admin/vacations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"admin",
-								"vacations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get report",
 					"request": {
 						"method": "GET",
@@ -364,7 +343,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MSwiZmlyc3ROYW1lIjoiT2ZlayIsImxhc3ROYW1lIjoiU2FiYWciLCJlbWFpbCI6Im9zYWJhZzU1QGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiJ9LCJpYXQiOjE2NzUwMDUyMjcsImV4cCI6MTY3NTAxNjAyN30.mY9QSwEGzNnLGWtbo1WTeuN_P3tqynmP1UO1RALG3B8",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJJZCI6MiwiZmlyc3ROYW1lIjoiQmFydCIsImxhc3ROYW1lIjoiU2ltcHNvbiIsImVtYWlsIjoiQmFydEBTaW1wc29uLmNvbSIsInJvbGUiOiJVc2VyIn0sImlhdCI6MTY3NjI5ODM1OSwiZXhwIjoxNjc2MzA5MTU5fQ.krIrwCOHLD6n0MpFTwd6JFM6PZJp8Wk08VtGm1iUW2I",
 				"type": "string"
 			}
 		]

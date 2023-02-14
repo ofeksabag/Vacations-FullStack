@@ -1,9 +1,8 @@
 class AppConfig {
-    public port = 4000;
-    public mysqlHost = "localhost";
-    public mysqlUser = "root";
-    public mysqlPassword = "";
-    public mysqlDatabase = "vacationsDatabase"; // Fill in the database name
+    public mysqlHost = process.env.MYSQL_HOST;
+    public mysqlUser = process.env.MYSQL_USER;
+    public mysqlPassword = process.env.MYSQL_PASSWORD;
+    public mysqlDatabase = process.env.MYSQL_DATABASE;
 
     public vacationsImagesUrl = `./src/1-assets/images/vacations/`;
 }

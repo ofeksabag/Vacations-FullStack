@@ -1,0 +1,55 @@
+services:
+  vacations-database-service:
+    image: ofeksabag/vacations-database-image:1.0
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    container_name: vacations-database-container
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: vacationsdatabase
+      MYSQL_USER: ofeksabag
+      MYSQL_PASSWORD: MyPassword
+      MYSQL_ROOT_PASSWORD: MyPassword
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - vacations:/var/lib/mysql
+
+# -------------------------------------------------------------------------------------------
+
+  vacations-backend-service:
+    image: ofeksabag/vacations-backend-image:1.0
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile.prod
+    container_name: vacations-backend-container
+    environment:
+      PORT: 4000
+      MYSQL_HOST: vacations-database-service
+      MYSQL_DATABASE: vacationsdatabase
+      MYSQL_USER: ofeksabag
+      MYSQL_PASSWORD: MyPassword
+    ports:
+      - 4001:4000
+    restart: unless-stopped
+    depends_on:
+      - vacations-database-service
+
+# -------------------------------------------------------------------------------------------
+
+  vacations-frontend-service:
+    image: ofeksabag/vacations-frontend-image:1.0
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: vacations-frontend-container
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    depends_on:
+      - vacations-backend-service
+
+volumes:
+  vacations:
