@@ -1,5 +1,5 @@
 # Vacations FullStack
- Vacations FullStack Website
+ ✨Vacations FullStack Website✨
  
  Database 👉🏻 MySQL
  <br />
